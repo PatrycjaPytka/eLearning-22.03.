@@ -1,0 +1,10 @@
+<a href = "{% url 'welcome:logout' %}"> Log out </a>
+{% if latest_lesson_list %}
+    <ul>
+    {% for lesson in latest_lesson_list %}
+        <li><a href="/lessons/{{ lesson.id }}/">{{ lesson.lesson_name }}</a></li>
+    {% endfor %}
+    </ul>
+{% else %}
+    <p>No lessons are available.</p>
+{% endif %}

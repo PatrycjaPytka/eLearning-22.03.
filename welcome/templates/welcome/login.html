@@ -1,0 +1,13 @@
+{% block title %} Please log in {% endblock %}
+
+{% block content %}
+
+
+<form method='POST' action="{% url 'welcome:login'%}" >
+    {% csrf_token %}
+    {{ form }}
+    <button type = 'submit'> Login </button>
+
+</form>
+
+{% endblock %}

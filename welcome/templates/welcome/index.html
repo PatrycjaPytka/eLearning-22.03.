@@ -1,0 +1,15 @@
+{% block title %} Welcome on our e-Learning site {% endblock %}
+
+{% block content %}
+
+{% if user.is_authenticated %}
+<title> Hello {{ user.username }} </title>
+
+{% else %}
+<p> Log in or register. </p>
+<a href = "{% url 'welcome:login' %}"> Log in </a>
+<br><br> 
+<a href = 'register'> Register </a>
+
+{% endif %}
+{% endblock %}

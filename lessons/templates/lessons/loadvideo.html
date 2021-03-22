@@ -1,0 +1,9 @@
+{% if video %}
+    <ul>
+    {% for v in video %}
+        <li><a href="/lessons/{{ v.id }}/">{{ v.video }}</a></li>
+    {% endfor %}
+    </ul>
+{% else %}
+    <p>No videos are available.</p>
+{% endif %}

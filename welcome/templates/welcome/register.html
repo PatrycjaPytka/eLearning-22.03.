@@ -1,0 +1,29 @@
+{% block title %} Registration {% endblock %}
+
+{% block content %}
+
+<form method = 'GET' target = '_blank'>
+
+    Username: <input type = 'text' placeholder = 'Enter username'>
+    <br><br>
+    Email: <input type = 'text' placeholder = 'Enter Email'>
+    <br><br>
+    Password: <input type = 'password' placeholder = 'Enter password'>
+    <br><br>
+
+</form>
+
+<form method = 'POST'> 
+    {% csrf_token %}
+    <input type = 'checkbox' id = 'staff'>
+    <label for 'staff'> I am a teacher </label>
+
+    <input type = 'checkbox' id = 'user'>
+    <label for 'user'> I am a student </label>
+    <br><br>
+
+    <button type = 'submit'> <a href = '/welcome/login/'> Register </a> </button>
+
+</form>
+
+{% endblock %}

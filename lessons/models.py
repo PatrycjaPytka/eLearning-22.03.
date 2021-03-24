@@ -16,13 +16,14 @@ class Lesson(models.Model):
 class Video(models.Model):
     lesson = models.ForeignKey(Lesson, on_delete = models.CASCADE)
     video_name = models.CharField(max_length = 200)
+    video_content = models.CharField(max_length = 400, blank = True, null = True)
+    video_url = models.URLField(max_length = 200, blank = True, null = True)
 
     def __str__(self):
         return self.video_name
 
-class VideoLoader(models.Model):
-    video = models.URLField(max_length = 200)
 
-    def __str__(self):
-        return self.video
+    
+
+
 

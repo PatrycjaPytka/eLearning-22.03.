@@ -1,28 +1,23 @@
-{% block title %} Registration {% endblock %}
+{% block title %} <strong> Sign up </strong> {% endblock %}
+<br><br>
+
+{% load crispy_forms_tags %}
 
 {% block content %}
 
-<form method = 'GET' target = '_blank'>
+<form action = "{% url 'welcome:register' %}" method = 'POST'> 
 
-    Username: <input type = 'text' placeholder = 'Enter username'>
-    <br><br>
-    Email: <input type = 'text' placeholder = 'Enter Email'>
-    <br><br>
-    Password: <input type = 'password' placeholder = 'Enter password'>
-    <br><br>
-
-</form>
-
-<form method = 'POST'> 
     {% csrf_token %}
-    <input type = 'checkbox' id = 'staff'>
+    {{ form|crispy}}
+
+    {% comment %} <input type = 'checkbox' id = 'staff'>
     <label for 'staff'> I am a teacher </label>
 
     <input type = 'checkbox' id = 'user'>
     <label for 'user'> I am a student </label>
-    <br><br>
+    <br><br>  {% endcomment %}
 
-    <button type = 'submit'> <a href = '/welcome/login/'> Register </a> </button>
+    <button type = 'submit'> <a href = "{% url 'welcome:login' %}" > Register </a> </button>
 
 </form>
 

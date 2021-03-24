@@ -3,13 +3,17 @@
 {% block content %}
 
 {% if user.is_authenticated %}
-<title> Hello {{ user.username }} </title>
+<p> Hello {{ user.username }} </p>
+
+<a href = "{% url 'lessons:index' %}"> Go to our lessons </a>
+<br><br>
+<a href = "{% url 'welcome:logout' %}"> Log out </a>
 
 {% else %}
 <p> Log in or register. </p>
 <a href = "{% url 'welcome:login' %}"> Log in </a>
 <br><br> 
-<a href = 'register'> Register </a>
+<a href = "{% url 'welcome:register' %}"> Register </a>
 
 {% endif %}
 {% endblock %}

@@ -1,9 +1,17 @@
-{% if video %}
+{% if user.is_authenticated %}
+
+{% if video_lesson %}
     <ul>
-    {% for v in video %}
-        <li><a href="/lessons/{{ v.id }}/">{{ v.video }}</a></li>
+    {% for v in video_lesson %}
+        <li><a href="{{ v.video_url }}"> Click here to play the video. </a></li>
     {% endfor %}
     </ul>
 {% else %}
     <p>No videos are available.</p>
+{% endif %}
+{% else %}
+    <P> <strong> Please log in </strong> </p>
+    <a href = "{% url 'welcome:login' %}"> Log in </a> 
+    <br><br>
+    <a href = "{% url 'welcome:register' %}"> Register </a>
 {% endif %}

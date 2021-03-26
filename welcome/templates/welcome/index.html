@@ -1,19 +1,23 @@
+ {% extends "welcome/base.html" %} 
 {% block title %} Welcome on our e-Learning site {% endblock %}
 
 {% block content %}
-
+<div class= "row justify-content-center">
+        <div class="col-sm-4 text-center">
 {% if user.is_authenticated %}
-<p> Hello {{ user.username }} </p>
+    <br><br>
+    <p> Hello {{ user.username }}, </p>
+    <li><a href = "{% url 'lessons:index' %}"> Go to our lessons </a></li>
+    <br><br>
+    <a href = "{% url 'welcome:logout' %}"> Log out </a>
 
-<a href = "{% url 'lessons:index' %}"> Go to our lessons </a>
-<br><br>
-<a href = "{% url 'welcome:logout' %}"> Log out </a>
-
-{% else %}
-<p> Log in or register. </p>
-<a href = "{% url 'welcome:login' %}"> Log in </a>
-<br><br> 
-<a href = "{% url 'welcome:register' %}"> Register </a>
+    {% else %}
+    <p> Log in or register. </p>
+    <a href = "{% url 'welcome:login' %}"> Log in </a>
+    <br><br> 
+    <a href = "{% url 'welcome:register' %}"> Register </a>
 
 {% endif %}
+</div>
+</div>
 {% endblock %}

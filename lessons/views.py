@@ -22,9 +22,13 @@ def detail(request, lesson_id):
 
 def loadvideo(request, lesson_id, video_id):
     video_lesson = Video.objects.filter(pk = video_id)
+    video_list = Video.objects.filter(lesson__pk = lesson_id)
     template3 = loader.get_template('lessons/loadvideo.html')
     context = {
         'video_lesson': video_lesson,
+        'video_list': video_list,
     }
     return HttpResponse(template3.render(context, request))
-    
+
+def password(request):
+    return HttpResponse("write password")

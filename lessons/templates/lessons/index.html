@@ -1,24 +1,31 @@
+{% extends "lessons/base.html" %}
+
+{% block title %} Lessons {% endblock %}
+
 {% if user.is_authenticated %}
 
-<p> Hello {{ user.username }}, </p>
-{% block title %} Welcome on our e-Learning site {% endblock %}
-<br><br>
-<a href = "{% url 'welcome:logout' %}"> Log out </a>
-
-    {% if latest_lesson_list %}
-        <ul>
-        <a><strong> Lessons: </strong></a>
-        <br><br>
-        {% for lesson in latest_lesson_list %}
-            <li><a href="{{ lesson.id }}"> {{ lesson.lesson_name }} </a></li>
-        {% endfor %}
-        </ul>
-    {% else %}
-        <p>No lessons are available.</p>
-    {% endif %}
+    {% block content %}
+        {% if latest_lesson_list %}
+            <ul>
+            <br><br>
+            <a><strong> Lessons: </strong></a>
+            <br><br>
+            {% for lesson in latest_lesson_list %}
+                <li><a href="{{ lesson.id }}"> {{ lesson.lesson_name }} </a></li> 
+                <br><br>
+            {% endfor %}
+            </ul>
+        {% else %}
+            <p>No lessons are available.</p>
+        {% endif %}
+        <div></div>
+{% endblock %}
 {% else %}
     <P> <strong> Please log in </strong> </p>
     <a href = "{% url 'welcome:login' %}"> Log in </a> 
     <br><br>
     <a href = "{% url 'welcome:register' %}"> Register </a>
+    <br><br>
+    <a href = "{% url 'welcome:index' %}"> Home</a>
 {% endif %}
+

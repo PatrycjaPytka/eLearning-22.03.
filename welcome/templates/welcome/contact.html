@@ -1,0 +1,48 @@
+{% extends "welcome/base.html" %}
+
+{% block title %} Contact us {% endblock %}
+<br><br>
+{% block content %}
+    <div class= "row justify-content-center">
+        <div class="col-sm-4 text-center">
+        <br><br>
+
+    {% if user.is_authenticated %}
+        {% if contact_us_list %}
+            <ul> 
+            {% for cont in contact_us_list %}
+            <li><a> E-mail: </a></li>
+                <a> {{ cont.email }} </a>
+                <br><br>
+            <li><a> Address: </a></li>
+                <a> {{ cont.country }} </a>
+                <a> {{ cont.city }} </a>
+                <a> {{ cont.street }} </a>
+                <br><br>
+            {% endfor %}
+            </ul>
+        {% else %}
+            <p>This site is empty.</p>
+        {% endif %}
+    {% else %}
+    <a href = "{% url 'welcome:login' %}"> Log in </a>
+    <br><br>
+    {% if contact_us_list %}
+            <ul> 
+            {% for cont in contact_us_list %}
+            <li><a> E-mail: </a></li>
+                <a> {{ cont.email }} </a>
+                <br><br>
+            <li><a> Address: </a></li>
+                <a> {{ cont.country }} </a>
+                <a> {{ cont.city }} </a>
+                <a> {{ cont.street }} </a>
+                <br><br>
+            {% endfor %}
+            </ul>
+        {% else %}
+            <p>This site is empty.</p>
+    {% endif %}
+{% endif %}
+        <div></div>
+{% endblock %}

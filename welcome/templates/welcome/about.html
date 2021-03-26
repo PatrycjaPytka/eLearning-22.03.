@@ -1,0 +1,32 @@
+{% extends "welcome/base.html" %}
+
+{% block title %} About us {% endblock %}
+
+{% block content %}
+{% if user.is_authenticated %}
+    {% if about_us_list %}
+        <ul>
+        {% for text in about_us_list %} 
+            <br><br>
+            <p><strong> {{text.name}} </strong></p>
+            <p> {{text.text_about}} </p>
+        {% endfor %}
+        </ul>
+    {% else %}
+        <p>This site is empty.</p>
+    {% endif %}
+{% else %}
+    <a href = "{% url 'welcome:login' %}"> Log in </a>
+    <br><br>
+    {% if about_us_list %}
+        <ul>
+        {% for text in about_us_list %}
+            <p><strong> {{text.name}} </strong></p>
+            <p> {{text.text_about}} </p>
+        {% endfor %}
+        </ul>
+    {% else %}
+        <p>This site is empty.</p>
+    {% endif %}
+{% endif %}
+{% endblock %}

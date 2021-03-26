@@ -1,4 +1,5 @@
 from django.shortcuts import render, redirect
+from django.template import loader
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
@@ -6,6 +7,24 @@ from django.http import HttpResponse
 from welcome.forms import UserForm
 from django.contrib.auth.forms import UserCreationForm
 
+from .models import AboutUs, ContactUs
+
+
+def contact_us(request):
+    contact_us_list = ContactUs.objects.all()
+    template = loader.get_template('welcome/contact.html')
+    context = {
+        'contact_us_list': contact_us_list,
+    }
+    return HttpResponse(template.render(context, request))
+
+def about_us(request):
+    about_us_list = AboutUs.objects.all()
+    template = loader.get_template('welcome/about.html')
+    context = {
+        'about_us_list': about_us_list,
+    }
+    return HttpResponse(template.render(context, request))
 
 def index(request):
     return render(request, 'welcome/index.html')

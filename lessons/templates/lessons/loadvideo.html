@@ -1,17 +1,41 @@
-{% if user.is_authenticated %}
+{% extends "lessons/base.html" %}
 
-{% if video_lesson %}
-    <ul>
-    {% for v in video_lesson %}
-        <li><a href="{{ v.video_url }}"> Click here to play the video. </a></li>
-    {% endfor %}
-    </ul>
-{% else %}
-    <p>No videos are available.</p>
-{% endif %}
+{% block title %} VideoLesson {% endblock %}
+
+{% block content %}
+{% if user.is_authenticated %}
+    {% if video_lesson %}
+        <ul>
+        {% for v in video_lesson %} 
+            <br><br>
+            <video width = "530" height = "440" controls>
+                <source src = "{{v.video_url}}" type = "video/mp4">
+                </video>
+            {% comment %} <li><a href="{{ v.video_url }}"> {{ v.video_url }} </a></li> {% endcomment %}
+            <br><br>
+        {% endfor %}
+        </ul>
+    {% else %}
+        <p>No videos are available.</p>
+        <br><br>
+        <a href = "{% url 'lessons:index' %}"> Go back to subjects. </a>
+    {% endif %}
+    {% if video_list %}
+        <ul>
+        <a><strong> All topics from lesson: </strong></a>
+        <br><br>
+        {% for video in video_list %}
+            <li><a href = "/lessons/{{video.lesson_id}}/{{ video.id }}"> {{ video.video_name }} </a></li>
+            <a> {{ video.video_content }} </a>
+        {% endfor %}
+        <br><br>
+        <a href = "{% url 'lessons:index' %}"> Go back to subjects. </a>
+        </ul>
+    {% endif %}
 {% else %}
     <P> <strong> Please log in </strong> </p>
     <a href = "{% url 'welcome:login' %}"> Log in </a> 
     <br><br>
     <a href = "{% url 'welcome:register' %}"> Register </a>
 {% endif %}
+{% endblock %}

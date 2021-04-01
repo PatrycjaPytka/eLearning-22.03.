@@ -1,0 +1,54 @@
+{% extends "lessons/base.html" %}
+
+{% block title %} Password {% endblock %}
+
+{% block content %}
+{% if user.is_authenticated %}
+    {% if video_lesson %}
+        <ul>
+        {% for v in video_lesson %}
+            <label for = 'password'> Password: </label>
+            <input type = 'text' id = 'password'>
+            <input type = 'hidden' id = 'video_password' value = "{{video.video_password}}" >
+
+            <a><button class = 'button' onclick = 'compareText()'> Submit </button></a>   
+            
+            <script type="text/javascript">
+                function compareText() {
+                    var password = document.getElementById("password").value;
+                    var truePassword = document.getElementById("video_password").value;
+
+                    if (password == truePassword) {
+                        alert("dupa")
+                    } 
+                    else {
+                        alert("Wrong password");
+                    }
+                }
+            </script>
+        {% endfor %}
+        </ul>
+    {% else %}
+        <p>No videos are available.</p>
+        <br><br>
+    {% endif %}
+    {% if video_list %}
+        <ul>
+        <div class = 'sidenav'>
+            <a><u> Other topics: </u></a>
+            {% for video in video_list %}
+                <a href = "/lessons/{{video.lesson_id}}/{{video.id}}"> {{ video.video_name }} </a>
+            {% endfor %}
+        </div>
+        <br><br>
+        </ul>
+    {% endif %}
+{% else %}
+    <div class = 'p'>
+        <p><strong> Please log in or sign up.</strong></p>
+    </div>
+    <a href = "{% url 'welcome:login' %}"> Log in </a> 
+    <br><br>
+    <a href = "{% url 'welcome:index' %}"> Register </a>
+{% endif %}
+{% endblock %}

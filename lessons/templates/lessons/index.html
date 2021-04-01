@@ -1,0 +1,27 @@
+{% extends "lessons/base.html" %}
+
+{% block title %} Lessons {% endblock %}
+
+{% block content %}
+{% if user.is_authenticated %}
+    {% if latest_lesson_list %}
+        <ul>
+        <p><strong> Lessons: </strong></p>
+        <br>
+        {% for lesson in latest_lesson_list %}
+            <li><a href="{{ lesson.id }}/{{video.id}}"> {{ lesson.lesson_name }} </a></li> 
+            <br>
+        {% endfor %}
+        </ul>
+    {% else %}
+        <p>No lessons are available.</p>
+    {% endif %}
+{% else %}
+    <br><br>
+    <div class = 'p'>
+        <p><strong> Please log in or sign up.</strong></p>
+    </div>
+    <a href = "{% url 'welcome:login' %}"><button class = 'button'> Log in </button></a> 
+    <a href = "{% url 'welcome:index' %}"><button class = 'button'> Sign up </button></a>
+{% endif %}
+{% endblock %}

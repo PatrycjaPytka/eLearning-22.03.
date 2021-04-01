@@ -1,0 +1,34 @@
+{% extends "lessons/base.html" %}
+
+{% block title %} Contact us {% endblock %}
+
+{% block content %}
+    {% if user.is_authenticated %}
+
+    {% else %}
+        <div class = 'p'>
+            <p><strong> Please log in or sign up.</strong></p>
+            </div>
+        <a href = "{% url 'welcome:login' %}"><button class = 'button'> Log in </button></a>
+        <a href = "{% url 'welcome:teach_learn' %}"><button class = 'button'> Sign up </button></a>
+        <br><br>
+        {% endif %}
+
+    {% if contact_us_list %}
+        <div class = 'a'><ul> 
+        {% for cont in contact_us_list %}
+            <li><p><strong> E-mail: </strong></p></li>
+                <a> {{ cont.email }} </a>
+                <br><br>
+            <li><p><strong> Address: </strong></p></li>     
+                <a> ul. {{ cont.street }}, </a>
+                <a> {{ cont.city }} </a>
+                <br><br>
+                <a> {{ cont.country }} </a>
+            <br><br>
+        {% endfor %}
+        </ul></div>
+    {% else %}
+        <p>This site is empty.</p>
+    {% endif %}
+{% endblock %}

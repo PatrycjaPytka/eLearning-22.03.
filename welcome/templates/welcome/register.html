@@ -1,0 +1,45 @@
+{% extends "lessons/base.html" %}
+{% load crispy_forms_tags %}
+
+{% block title %} Sign up {% endblock %}
+<br><br>
+
+{% block content %}
+<br><br>
+<div class = 'signupbox'>
+    <div class = 'p'>
+        <p><strong> Sign up </strong></p>
+    </div>
+    <form action = "{% url 'welcome:reg_user' %}" method = 'POST' > 
+
+        {% csrf_token %}
+        {{ form|crispy}}
+        <br><br>
+
+        <a href = "{% url 'welcome:login' %}" ><button type = 'submit' class = 'button'> Register </button></a>
+        
+    </form>
+</div>
+
+<body>
+    <input type = 'checkbox' id = 'teacher'>
+    <input type = 'checkbox' id = 'student'>
+    <a><button class = 'button' type = 'button' onclick = 'whichOne()'> Submit </button></a>          
+    <br><br>
+
+    <script type = "text/javascript">
+        function whichOne() {
+            var teacher = document.getElementById("teacher").value;
+            var student = document.getElementById("student").value;
+
+            if (password == truePassword) {
+                document.getElementById("v_lesson").style.display = 'block';
+            } 
+            else {
+                alert("Wrong password");
+            }
+        }
+    </script>
+</body>    
+
+{% endblock %}

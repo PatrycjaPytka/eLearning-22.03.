@@ -1,0 +1,23 @@
+{% extends "lessons/base.html" %}
+
+{% block title %} Sign up {% endblock %}
+<br><br>
+
+{% load crispy_forms_tags %}
+
+{% block content %}
+<br><br>
+<div class = 'signupbox'>
+    <div class = 'p'>
+        <p><strong> Sign up </strong></p>
+    </div>
+    <form action = "{% url 'welcome:reg_staff' %}" method = 'POST'> 
+
+        {% csrf_token %}
+        {{ form|crispy}}
+        <br><br>
+
+        <a href = "{% url 'welcome:login' %}" ><button type = 'submit' class = 'button'> Register </button></a>
+    </form>
+</div>
+{% endblock %}

@@ -1,0 +1,11 @@
+{% extends "lessons/base.html" %}
+
+{% block content %}
+<br><br>
+<div class = 'p'>
+    <p><strong> Please, choose which type of account would you like to create: </strong></p>
+</div>
+<br>
+<a href = "{% url 'welcome:reg_user' %}"><button class = 'button'> Student </button></a>
+<a href = "{% url 'welcome:reg_staff' %}"><button class = 'button'> Teacher </button></a>
+{% endblock %}

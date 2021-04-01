@@ -1,0 +1,29 @@
+{% extends "lessons/base.html" %}
+
+{% block title %} About us {% endblock %}
+
+{% block content %}
+
+    {% if user.is_authenticated %}
+
+    {% else %}
+        <div class = 'p'>
+            <p><strong> Please log in or sign up.</strong></p>
+        </div>
+        <a href = "{% url 'welcome:login' %}"><button class = 'button'> Log in </button></a>
+        <a href = "{% url 'welcome:index' %}"><button class = 'button'> Sign up </button></a>
+        <br><br>
+    {% endif %}
+    <br><br>
+
+    {% if about_us_list %}
+        <ul>
+        {% for text in about_us_list %}
+            <li><p><strong> {{text.name}} </strong></p></li>
+            <a> {{text.text_about}} </a>
+        {% endfor %}
+        </ul>
+    {% else %}
+        <p>This site is empty.</p>
+    {% endif %}
+{% endblock %}

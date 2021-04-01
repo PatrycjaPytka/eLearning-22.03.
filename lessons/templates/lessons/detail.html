@@ -1,0 +1,32 @@
+{% extends "lessons/base.html" %}
+{% load crispy_forms_tags %}
+
+{% block title %} Topics {% endblock %}
+
+{% block content %}
+{% if user.is_authenticated %}
+
+    {% if video_list %}
+        <ul>
+        <p><strong> Topics: </strong></p>
+        <br>
+        {% for video in video_list %}
+            <li><strong><a href = "{{video.id}}"> {{ video.video_name }} </a></strong></li>
+            <a> {{ video.video_content }} </a>     
+            <br><br>
+
+        {% endfor %}
+        </ul>
+    {% else %}
+    <br><br>
+        <p>No videos are available.</p>
+    {% endif %}
+{% else %}
+        <div class = 'p'>
+            <p><strong> Please log in or sign up.</strong></p>
+        </div>
+        <a href = "{% url 'welcome:login' %}"> Log in </a> 
+        <br><br>
+        <a href = "{% url 'welcome:index' %}"> Register </a>
+{% endif %} 
+{% endblock %}
